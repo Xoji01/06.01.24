@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="container">
+        <h1>Dashboard</h1>
+        <button id="addTaskButton" onclick="openModal()">Добавить задачу</button>
+
+        <div id="viewButtons">
+            <button onclick="switchView('table')" id="tableButton">Показать в таблице</button>
+            <button onclick="switchView('block')" id="blockButton">Показать в плитках</button>
+        </div>
+        <input type="text" id="searchTitle" placeholder="Поиск по задачам" oninput="searchByTitle()">
+    </div>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h1>Добавить</h1>
+            <input type="text" id="title" placeholder="Заголовок задачи">
+            <input type="text" id="description" placeholder="Описание задачи">
+            <input type="time" id="time" placeholder="Время">
+            <input type="date" id="date" placeholder="Дата">
+            <button class="addmodal" onclick="addTask()">Добавить</button>
+        </div>
+    </div>
+    <div id="editTaskModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditTaskModal()">&times;</span>
+            <input type="text" id="editTitle" placeholder="Новый заголовок">
+            <input type="text" id="editDescription" placeholder="Новое описание">
+            <input type="text" id="editTime" placeholder="Новое время">
+            <input type="text" id="editDate" placeholder="Новая дата">
+            <button class="addmodal" onclick="editTask()">Сохранить изменения</button>
+            <button class="delete" onclick="deleteTask()">Удалить задачу</button>
+        </div>
+    </div>
+
+    <div id="tasksContainer"></div>
+
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            outline: none;
+            box-sizing: border-box;
+        
+        }
+        body{
+            background-color: #c4dbdd61 ;
+
+        }
+        .delete {
+            border-radius: 10px;
+            border: 0px solid;
+            background:red;
+            width: 250px;
+            height: 40px;
+            flex-shrink: 0;
+            color: #FFF;
+            text-align: center;
+            font-family: Gilroy;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .addmodal{
+            border-radius: 10px;
+            border: 0px solid;
+            background: #0071E3;
+            width: 250px;
+            height: 40px;
+            flex-shrink: 0;
+            color: #FFF;
+            text-align: center;
+            font-family: Gilroy;
+            font-size: 12px;
+        }
+        #searchTitle {
+            width: 145px;
+            height: 32px;
+            border-radius: 10px;
+            border: 1px solid;       
+        }
+        #tableButton {
+            background-color:  #c4dbdd61;
+            border: 0px solid;
+        }
+        #blockButton{
+            background-color: #c4dbdd61;
+            border: 0px solid;  
+        }
+        #addTaskButton {
+            border-radius: 10px;
+            border: 0px solid;
+            background: #0071E3;
+            width: 140px;
+            height: 42px;
+            flex-shrink: 0;
+            color: #FFF;
+            text-align: center;
+            font-family: Gilroy;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+        
+
+        #container {
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        #container h1 {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        #addTaskButton {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        #viewButtons {
+            margin-bottom: 10px;
+        }
+
+        #tasksContainer {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        #searchTitle {
+            position: relative;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-content {
+            text-align: center;
+        }
+
+        .modal input {
+            display: block;
+            margin: 10px 0;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .task {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .task p {
+            margin: 0;
+        }
+
+        .task-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .task-table th,
+        .task-table td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .task-table th {
+            background-color: #c4dbdd61;
+        }
+    </style>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
